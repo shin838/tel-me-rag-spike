@@ -1,0 +1,6 @@
+.env
+__pycache__/
+*.pyc
+results/*.npz
+results/comparison.json
+results/comparison.md

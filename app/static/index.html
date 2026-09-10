@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>한빛모바일 AI 상담 (RAG 스파이크)</title>
+<style>
+  :root{
+    --bg:#f4f6f9; --panel:#ffffff; --line:#e2e6ee; --text:#1c2434; --muted:#6b7488;
+    --brand:#e6007e; --ok:#0f9d58; --warn:#c77700; --err:#d33a3a; --radius:12px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Pretendard,"Malgun Gothic",system-ui,sans-serif;background:var(--bg);color:var(--text)}
+  header{background:var(--panel);border-bottom:1px solid var(--line);padding:14px 20px;
+         display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  header h1{font-size:17px;margin:0;font-weight:700}
+  header .tag{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:2px 8px}
+  .wrap{max-width:1100px;margin:0 auto;padding:16px;display:grid;grid-template-columns:1fr 320px;gap:16px}
+  @media (max-width:900px){ .wrap{grid-template-columns:1fr} .side{order:-1} }
+
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius)}
+  .chat{display:flex;flex-direction:column;height:calc(100vh - 130px);min-height:480px}
+  .log{flex:1;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:14px}
+  .msg{max-width:82%;padding:11px 14px;border-radius:14px;line-height:1.65;white-space:pre-wrap;
+       word-break:break-word;font-size:14px}
+  .msg.user{align-self:flex-end;background:var(--brand);color:#fff;border-bottom-right-radius:4px}
+  .msg.bot{align-self:flex-start;background:#f1f3f7;border-bottom-left-radius:4px}
+  .msg.err{align-self:flex-start;background:#fdecec;color:var(--err);border:1px solid #f6c9c9}
+
+  .meta{font-size:11px;color:var(--muted);margin-top:8px;display:flex;gap:10px;flex-wrap:wrap}
+  .meta b{font-weight:600;color:#4a5266}
+  details.src{margin-top:9px;font-size:12px}
+  details.src summary{cursor:pointer;color:var(--brand);font-weight:600;outline:none}
+  details.src ol{margin:8px 0 0;padding-left:18px}
+  details.src li{margin-bottom:7px;color:#414a5c}
+  details.src .q{font-weight:600}
+  details.src .sc{color:var(--muted);font-size:11px;margin-left:4px}
+
+  .chips{display:flex;gap:7px;flex-wrap:wrap;padding:0 18px 12px}
+  .chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;
+        font-size:12.5px;cursor:pointer;color:#414a5c;font-family:inherit}
+  .chip:hover{border-color:var(--brand);color:var(--brand)}
+
+  .composer{border-top:1px solid var(--line);padding:12px;display:flex;gap:8px}
+  .composer textarea{flex:1;resize:none;border:1px solid var(--line);border-radius:10px;padding:11px 12px;
+        font-family:inherit;font-size:14px;height:46px;outline:none}
+  .composer textarea:focus{border-color:var(--brand)}
+  button.send{background:var(--brand);color:#fff;border:0;border-radius:10px;padding:0 20px;
+        font-size:14px;font-weight:600;cursor:pointer;font-family:inherit}
+  button.send:disabled{background:#c9ccd4;cursor:not-allowed}
+
+  .side .panel{padding:14px;margin-bottom:14px}
+  .side h2{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 10px}
+  label.f{display:block;font-size:12px;color:#4a5266;margin:10px 0 4px;font-weight:600}
+  select,input[type=number]{width:100%;border:1px solid var(--line);border-radius:8px;padding:8px;
+        font-size:13px;font-family:inherit;background:#fff;color:var(--text)}
+  .hint{font-size:11.5px;color:var(--muted);margin-top:6px;line-height:1.5}
+  .status{font-size:12px;padding:8px 10px;border-radius:8px;background:#f1f3f7;color:var(--muted)}
+  .status.run{background:#fff6e5;color:var(--warn)}
+  .status.ok{background:#e9f7ef;color:var(--ok)}
+  .status.err{background:#fdecec;color:var(--err)}
+  table.load{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:6px}
+  table.load th,table.load td{border-bottom:1px solid var(--line);padding:4px 3px;text-align:right}
+  table.load th:first-child,table.load td:first-child{text-align:left}
+  table.load th{color:var(--muted);font-weight:600}
+  .zero{color:var(--err)}
+  .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--brand);
+       animation:blink 1s infinite;margin-left:2px}
+  @keyframes blink{0%,100%{opacity:.25}50%{opacity:1}}
+</style>
+</head>
+<body>
+<header>
+  <h1>한빛모바일 AI 상담</h1>
+  <span class="tag">RAG 스파이크</span>
+  <span class="tag">FAQ 100건</span>
+  <span class="tag" id="llmTag">LLM –</span>
+</header>
+
+<div class="wrap">
+  <div class="panel chat">
+    <div class="log" id="log">
+      <div class="msg bot">안녕하세요, 한빛모바일 AI 상담입니다. 요금제·가입·해지·로밍 등 궁금한 점을 물어봐 주세요.
+오른쪽에서 임베딩 모델과 Vector DB를 바꿔가며 같은 질문의 검색 결과를 비교할 수 있습니다.</div>
+    </div>
+    <div class="chips" id="chips"></div>
+    <div class="composer">
+      <textarea id="q" placeholder="예) 약정 1년쯤 지났는데 지금 해지하면 얼마 물어내요?" maxlength="500"></textarea>
+      <button class="send" id="send">전송</button>
+    </div>
+  </div>
+
+  <div class="side">
+    <div class="panel">
+      <h2>검색 조합</h2>
+      <label class="f" for="embed">임베딩 모델</label>
+      <select id="embed"></select>
+      <div class="hint" id="embedNote"></div>
+      <label class="f" for="store">Vector DB</label>
+      <select id="store"></select>
+      <label class="f" for="topk">top-k</label>
+      <input type="number" id="topk" min="1" max="10" value="3">
+      <div class="hint">같은 질문을 조합만 바꿔 다시 보내면 근거 FAQ와 지연 시간이 어떻게 달라지는지 볼 수 있습니다.</div>
+    </div>
+
+    <div class="panel">
+      <h2>상태</h2>
+      <div class="status" id="status">대기 중</div>
+      <div class="meta" id="timing"></div>
+    </div>
+
+    <div class="panel">
+      <h2>적재 현황</h2>
+      <div id="loaded"></div>
+      <div class="hint">0이면 아직 적재 전입니다.<br><code>docker compose exec api python -m app.ingest</code></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const SAMPLES = [
+  "제일 싼 요금제 뭐예요?",
+  "약정 1년쯤 지났는데 해지하면 얼마 물어내요?",
+  "일본 가는데 데이터 어떻게 써요?",
+  "애들 이름으로 폰 만들려면 뭐 챙겨가요?",
+  "해지 매장 안 가고 집에서 되나요?"
+];
+let CFG = null, busy = false, lastQuestion = "";
+
+async function loadConfig() {
+  CFG = await (await fetch("/api/config")).json();
+
+  $("embed").innerHTML = CFG.embed_models
+    .map(m => '<option value="' + m.name + '">' + m.name + '</option>').join("");
+  $("embed").value = CFG.defaults.embed_model;
+  $("store").innerHTML = CFG.stores.map(s => '<option value="' + s + '">' + s + '</option>').join("");
+  $("store").value = CFG.defaults.store;
+  $("topk").value = CFG.defaults.top_k;
+  $("llmTag").textContent = "LLM " + CFG.defaults.llm_model;
+  showNote();
+  renderLoaded();
+
+  $("chips").innerHTML = SAMPLES.map(s => '<button class="chip">' + s + '</button>').join("");
+  document.querySelectorAll(".chip").forEach(c => {
+    c.onclick = () => { $("q").value = c.textContent; send(); };
+  });
+}
+
+function showNote() {
+  const m = CFG.embed_models.find(x => x.name === $("embed").value);
+  $("embedNote").textContent = m ? m.ollama_tag + " — " + m.note : "";
+}
+
+function renderLoaded() {
+  const stores = CFG.stores;
+  let html = '<table class="load"><tr><th>임베딩</th>' +
+             stores.map(s => "<th>" + s + "</th>").join("") + "</tr>";
+  for (const model of Object.keys(CFG.loaded_counts)) {
+    const counts = CFG.loaded_counts[model];
+    const short = model.replace("multilingual-", "ml-").replace("-embed-text", "");
+    html += '<tr><td title="' + model + '">' + short + "</td>" +
+      stores.map(s => '<td class="' + (counts[s] ? "" : "zero") + '">' + counts[s] + "</td>").join("") +
+      "</tr>";
+  }
+  $("loaded").innerHTML = html + "</table>";
+}
+
+function setStatus(text, cls) {
+  $("status").className = "status " + (cls || "");
+  $("status").textContent = text;
+}
+
+function addMsg(cls, text) {
+  const el = document.createElement("div");
+  el.className = "msg " + cls;
+  el.textContent = text;
+  $("log").appendChild(el);
+  $("log").scrollTop = $("log").scrollHeight;
+  return el;
+}
+
+function escapeHtml(s) {
+  return s.replace(/[&<>"']/g, c => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+  }[c]));
+}
+
+function renderSources(el, data) {
+  const box = document.createElement("details");
+  box.className = "src";
+  const items = data.sources.map(s =>
+    '<li><span class="q">' + escapeHtml(s.question) + '</span>' +
+    '<span class="sc">유사도 ' + s.score.toFixed(3) + " · " + s.faq_id + "</span>" +
+    "<div>" + escapeHtml(s.answer) + "</div></li>").join("");
+  box.innerHTML = "<summary>참고한 FAQ " + data.sources.length +
+    "건 (최고 유사도 " + data.top_score.toFixed(3) + ")</summary><ol>" + items + "</ol>";
+  el.appendChild(box);
+}
+
+async function send(retryText) {
+  if (busy) return;
+  const question = retryText || $("q").value.trim();
+  if (!question) return;
+  lastQuestion = question;
+  if (!retryText) { addMsg("user", question); $("q").value = ""; }
+
+  busy = true;
+  $("send").disabled = true;
+  setStatus("검색 중…", "run");
+  $("timing").innerHTML = "";
+
+  const bubble = addMsg("bot", "");
+  const body = document.createElement("span");
+  bubble.appendChild(body);
+  const cursor = document.createElement("span");
+  cursor.className = "dot";
+  bubble.appendChild(cursor);
+
+  let retrieval = null, answered = false;
+
+  try {
+    const res = await fetch("/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        question: question,
+        embed_model: $("embed").value,
+        store: $("store").value,
+        top_k: parseInt($("topk").value, 10)
+      })
+    });
+
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+    let buf = "";
+
+    while (true) {
+      const chunk = await reader.read();
+      if (chunk.done) break;
+      buf += decoder.decode(chunk.value, { stream: true });
+      const parts = buf.split("\n\n");
+      buf = parts.pop();
+
+      for (const part of parts) {
+        const line = part.trim();
+        if (!line.startsWith("data:")) continue;
+        const ev = JSON.parse(line.slice(5));
+
+        if (ev.type === "retrieval") {
+          retrieval = ev;
+          setStatus(ev.below_threshold ? "유사 FAQ 없음 (임계값 미만)" : "답변 생성 중…", "run");
+          $("timing").innerHTML =
+            "<span><b>임베딩</b> " + ev.embed_ms + "ms</span>" +
+            "<span><b>검색</b> " + ev.search_ms + "ms</span>" +
+            "<span><b>최고 유사도</b> " + ev.top_score.toFixed(3) + "</span>";
+        } else if (ev.type === "token") {
+          answered = true;
+          body.textContent += ev.text;
+          $("log").scrollTop = $("log").scrollHeight;
+        } else if (ev.type === "done") {
+          cursor.remove();
+          if (retrieval && retrieval.sources.length && !retrieval.below_threshold) {
+            renderSources(bubble, retrieval);
+          }
+          setStatus("완료", "ok");
+          if (!ev.skipped_llm) {
+            $("timing").innerHTML +=
+              "<span><b>첫 토큰</b> " + (ev.first_token_ms / 1000).toFixed(1) + "s</span>" +
+              "<span><b>전체</b> " + (ev.total_ms / 1000).toFixed(1) + "s</span>";
+          }
+        } else if (ev.type === "error") {
+          cursor.remove();
+          if (!answered) bubble.remove();
+          const errEl = addMsg("err", ev.message);
+          const btn = document.createElement("button");
+          btn.className = "chip";
+          btn.style.marginTop = "8px";
+          btn.textContent = "다시 시도";
+          btn.onclick = () => { errEl.remove(); send(lastQuestion); };
+          errEl.appendChild(document.createElement("br"));
+          errEl.appendChild(btn);
+          setStatus("실패: " + (ev.reason || "unknown"), "err");
+        }
+      }
+    }
+  } catch (e) {
+    cursor.remove();
+    if (!answered) bubble.remove();
+    addMsg("err", "서버와 연결하지 못했습니다: " + e.message);
+    setStatus("연결 실패", "err");
+  } finally {
+    cursor.remove();
+    busy = false;
+    $("send").disabled = false;
+  }
+}
+
+$("send").onclick = () => send();
+$("q").addEventListener("keydown", e => {
+  if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(); }
+});
+$("embed").onchange = showNote;
+loadConfig();
+</script>
+</body>
+</html>
