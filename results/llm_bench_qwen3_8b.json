@@ -1,0 +1,86 @@
+{
+  "model": "qwen3:8b",
+  "embed_model": "bge-m3",
+  "store": "pgvector",
+  "results": [
+    {
+      "question": "제일 싼 요금제 뭐예요?",
+      "answer": "한빛 알뜰 3GB 요금제가 월 22,000원으로 가장 저렴합니다. 만 65세 이상 고객이라면 시니어 5GB 요금제가 데이터 5GB와 음성 무제한 혜택을 제공해 더 유리할 수 있습니다.",
+      "error": null,
+      "embed_ms": 99.2,
+      "search_ms": 6.0,
+      "top_score": 0.6917,
+      "sources": [
+        "FAQ-013",
+        "FAQ-011",
+        "FAQ-031"
+      ],
+      "first_token_ms": 10020.8,
+      "total_ms": 13989.0
+    },
+    {
+      "question": "약정 1년쯤 지났는데 지금 해지하면 얼마 물어내요?",
+      "answer": "12개월 약정 기준으로 이용 기간이 10개월 이상이면 위약금이 0%입니다. 약정 기간이 1년이 지난 경우, 추가로 2개월 이상 사용하셨다면 위약금이 없습니다.",
+      "error": null,
+      "embed_ms": 86.7,
+      "search_ms": 6.4,
+      "top_score": 0.7207,
+      "sources": [
+        "FAQ-043",
+        "FAQ-076",
+        "FAQ-029"
+      ],
+      "first_token_ms": 29028.8,
+      "total_ms": 31535.8
+    },
+    {
+      "question": "일본 가는데 데이터 어떻게 써요?",
+      "answer": "데이터 로밍은 기본적으로 차단되어 요금 폭탄이 발생하지 않습니다. 일본에서 데이터를 사용하려면 로밍 요금제를 신청하거나 데이터 로밍을 활성화해야 합니다. 음성과 문자는 별도 신청 없이 사용할 수 있지만, 국가별 종량 요금이 부과될 수 있습니다.",
+      "error": null,
+      "embed_ms": 49.9,
+      "search_ms": 5.6,
+      "top_score": 0.4934,
+      "sources": [
+        "FAQ-032",
+        "FAQ-098",
+        "FAQ-074"
+      ],
+      "first_token_ms": 12856.2,
+      "total_ms": 15768.2
+    },
+    {
+      "question": "애들 이름으로 폰 만들려면 뭐 챙겨가요?",
+      "answer": "미성년자 자녀 명의로 휴대폰을 개통할 경우, 온라인으로는 불가능하며 매장 방문이 필요합니다. 법정대리인 동의서, 가족관계증명서, 법정대리인 신분증, 그리고 자녀 본인의 신분증(또는 학생증과 주민등록등본)을 반드시 지참해 주세요.",
+      "error": null,
+      "embed_ms": 71.9,
+      "search_ms": 6.6,
+      "top_score": 0.6167,
+      "sources": [
+        "FAQ-003",
+        "FAQ-048",
+        "FAQ-036"
+      ],
+      "first_token_ms": 8173.0,
+      "total_ms": 11789.0
+    },
+    {
+      "question": "해지 매장 안 가고 집에서 되나요?",
+      "answer": "한빛모바일 앱에서 '나의 가입정보' 메뉴를 통해 온라인 해지 신청이 가능합니다. 본인인증 절차가 필요하며, 매장 방문 없이 집에서 처리할 수 있습니다.",
+      "error": null,
+      "embed_ms": 69.1,
+      "search_ms": 7.7,
+      "top_score": 0.717,
+      "sources": [
+        "FAQ-051",
+        "FAQ-041",
+        "FAQ-042"
+      ],
+      "first_token_ms": 12006.4,
+      "total_ms": 14313.4
+    }
+  ],
+  "first_token_ms_avg": 14417.039999999999,
+  "first_token_ms_max": 29028.8,
+  "total_ms_avg": 17479.08,
+  "total_ms_max": 31535.8
+}

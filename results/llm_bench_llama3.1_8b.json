@@ -1,0 +1,86 @@
+{
+  "model": "llama3.1:8b",
+  "embed_model": "bge-m3",
+  "store": "pgvector",
+  "results": [
+    {
+      "question": "제일 싼 요금제 뭐예요?",
+      "answer": "한빛 알뜰 3GB가 월 22,000원으로 가장 저렴합니다. 만 65세 이상이시라면 시니어 5GB가 월 26,400원에 데이터 5GB와 음성 무제한을 제공하므로 더 유리할 수 있습니다.",
+      "error": null,
+      "embed_ms": 73.2,
+      "search_ms": 7.1,
+      "top_score": 0.6917,
+      "sources": [
+        "FAQ-013",
+        "FAQ-011",
+        "FAQ-031"
+      ],
+      "first_token_ms": 2967.0,
+      "total_ms": 5534.7
+    },
+    {
+      "question": "약정 1년쯤 지났는데 지금 해지하면 얼마 물어내요?",
+      "answer": "고객님, 약정 1년이 지났으면 해지 시 0%가 적용된다는 뜻입니다. 따라서 해지 시점까지 사용하신 만큼만 청구됩니다.",
+      "error": null,
+      "embed_ms": 50.7,
+      "search_ms": 5.1,
+      "top_score": 0.7207,
+      "sources": [
+        "FAQ-043",
+        "FAQ-076",
+        "FAQ-029"
+      ],
+      "first_token_ms": 2309.5,
+      "total_ms": 3781.4
+    },
+    {
+      "question": "일본 가는데 데이터 어떻게 써요?",
+      "answer": "고객님, 해외로 나가시면 음성과 문자는 사용하실 수 있으나 데이터는 기본적으로 차단되어 있습니다. 다만 국가별 종량 요금이 부과될 수 있습니다.",
+      "error": null,
+      "embed_ms": 88.3,
+      "search_ms": 7.0,
+      "top_score": 0.4934,
+      "sources": [
+        "FAQ-032",
+        "FAQ-098",
+        "FAQ-074"
+      ],
+      "first_token_ms": 1916.1,
+      "total_ms": 3467.9
+    },
+    {
+      "question": "애들 이름으로 폰 만들려면 뭐 챙겨가요?",
+      "answer": "안녕하세요. 고객님. 만 19세 미만 미성년자 명의로 휴대폰을 개통하려면 온라인으로는 불가능하고, 법정대리인 동의서, 가족관계증명서, 법정대리인 신분증, 그리고 자녀 본인의 신분증(또는 학생증과 주민등록등본)을 함께 지참해 주셔야 합니다.",
+      "error": null,
+      "embed_ms": 37.9,
+      "search_ms": 5.2,
+      "top_score": 0.6167,
+      "sources": [
+        "FAQ-003",
+        "FAQ-048",
+        "FAQ-036"
+      ],
+      "first_token_ms": 2404.3,
+      "total_ms": 6121.0
+    },
+    {
+      "question": "해지 매장 안 가고 집에서 되나요?",
+      "answer": "네, 가능합니다. 한빛모바일 앱에서 나의 가입정보 메뉴로 들어가 해지 신청을 하시면 되며, 본인인증 절차가 필요합니다.",
+      "error": null,
+      "embed_ms": 34.8,
+      "search_ms": 5.5,
+      "top_score": 0.717,
+      "sources": [
+        "FAQ-051",
+        "FAQ-041",
+        "FAQ-042"
+      ],
+      "first_token_ms": 2083.9,
+      "total_ms": 3543.1
+    }
+  ],
+  "first_token_ms_avg": 2336.16,
+  "first_token_ms_max": 2967.0,
+  "total_ms_avg": 4489.62,
+  "total_ms_max": 6121.0
+}
