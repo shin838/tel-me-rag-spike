@@ -1,0 +1,425 @@
+{
+  "answerable": [
+    {
+      "id": "Q-01",
+      "type": "",
+      "query": "애들 이름으로 폰 하나 만들어주려는데 뭐 챙겨가야 해요?",
+      "top1": 0.6126,
+      "gold_hit": true
+    },
+    {
+      "id": "Q-02",
+      "type": "",
+      "query": "쓰던 번호 그대로 갈아타면 얼마나 기다려야 하나요",
+      "top1": 0.7276,
+      "gold_hit": true
+    },
+    {
+      "id": "Q-03",
+      "type": "",
+      "query": "심카드 새로 받으면 돈 내야 되나요?",
+      "top1": 0.572,
+      "gold_hit": true
+    },
+    {
+      "id": "Q-04",
+      "type": "",
+      "query": "기본 데이터 다 쓰면 자동으로 돈 더 나가요?",
+      "top1": 0.6241,
+      "gold_hit": false
+    },
+    {
+      "id": "Q-05",
+      "type": "",
+      "query": "제일 싼 거 뭐예요",
+      "top1": 0.4991,
+      "gold_hit": true
+    },
+    {
+      "id": "Q-06",
+      "type": "",
+      "query": "이번달에 안 쓴 데이터 다음달로 넘어가나요",
+      "top1": 0.6779,
+      "gold_hit": true
+    },
+    {
+      "id": "Q-07",
+      "type": "",
+      "query": "출금 날짜를 15일로 옮기고 싶어요",
+      "top1": 0.6243,
+      "gold_hit": true
+    },
+    {
+      "id": "Q-08",
+      "type": "",
+      "query": "두 달 밀리면 전화 안 되나요?",
+      "top1": 0.6119,
+      "gold_hit": false
+    },
+    {
+      "id": "Q-09",
+      "type": "",
+      "query": "핸드폰으로 결제되는 거 막고 싶은데요",
+      "top1": 0.6216,
+      "gold_hit": true
+    },
+    {
+      "id": "Q-10",
+      "type": "",
+      "query": "다음주에 일본 가는데 현지에서 인터넷 쓰려면 뭐 신청해요?",
+      "top1": 0.5378,
+      "gold_hit": true
+    },
+    {
+      "id": "Q-11",
+      "type": "",
+      "query": "아무것도 신청 안 하고 외국 나가면 요금 폭탄 맞나요",
+      "top1": 0.7318,
+      "gold_hit": true
+    },
+    {
+      "id": "Q-12",
+      "type": "",
+      "query": "일주일 출장인데 어떤 상품이 제일 이득이에요",
+      "top1": 0.6396,
+      "gold_hit": true
+    },
+    {
+      "id": "Q-13",
+      "type": "",
+      "query": "매장 안 가고 집에서 끊을 수 있어요?",
+      "top1": 0.6347,
+      "gold_hit": true
+    },
+    {
+      "id": "Q-14",
+      "type": "",
+      "query": "약정 1년쯤 지났는데 지금 그만두면 얼마 물어내요",
+      "top1": 0.663,
+      "gold_hit": true
+    },
+    {
+      "id": "Q-15",
+      "type": "",
+      "query": "군대 가는 동안 번호 살려둘 방법 있나요",
+      "top1": 0.5633,
+      "gold_hit": false
+    },
+    {
+      "id": "Q-16",
+      "type": "",
+      "query": "대리점이랑 직영점이랑 뭐가 달라요?",
+      "top1": 0.7392,
+      "gold_hit": true
+    },
+    {
+      "id": "Q-17",
+      "type": "",
+      "query": "일요일에도 문 여는 곳 있나요",
+      "top1": 0.6322,
+      "gold_hit": true
+    },
+    {
+      "id": "Q-18",
+      "type": "",
+      "query": "폰 고치러 가려면 어디로 가야 되죠",
+      "top1": 0.5752,
+      "gold_hit": true
+    },
+    {
+      "id": "Q-19",
+      "type": "",
+      "query": "변기에 폰 빠뜨렸는데 공짜로 고쳐주나요",
+      "top1": 0.612,
+      "gold_hit": true
+    },
+    {
+      "id": "Q-20",
+      "type": "",
+      "query": "핸드폰 잃어버렸어요 뭐부터 해야 돼요",
+      "top1": 0.6466,
+      "gold_hit": true
+    },
+    {
+      "id": "Q-21",
+      "type": "",
+      "query": "쿠팡에서 산 공기계로도 개통돼요?",
+      "top1": 0.5271,
+      "gold_hit": true
+    },
+    {
+      "id": "Q-22",
+      "type": "",
+      "query": "데이터 다 떨어졌는데 추가로 사는 방법 있나요",
+      "top1": 0.6095,
+      "gold_hit": true
+    },
+    {
+      "id": "Q-23",
+      "type": "",
+      "query": "광고 전화 자꾸 오는데 막아주는 서비스 없어요?",
+      "top1": 0.6202,
+      "gold_hit": true
+    },
+    {
+      "id": "Q-24",
+      "type": "",
+      "query": "온 가족이 데이터 같이 쓰는 거 되나요",
+      "top1": 0.6841,
+      "gold_hit": true
+    },
+    {
+      "id": "Q-25",
+      "type": "",
+      "query": "쌓인 포인트로 통신비 깎을 수 있어요?",
+      "top1": 0.7327,
+      "gold_hit": true
+    },
+    {
+      "id": "Q-26",
+      "type": "",
+      "query": "포인트 안 쓰면 사라지나요",
+      "top1": 0.6647,
+      "gold_hit": true
+    },
+    {
+      "id": "Q-27",
+      "type": "",
+      "query": "제일 높은 등급 되려면 얼마나 써야 해요",
+      "top1": 0.6016,
+      "gold_hit": true
+    },
+    {
+      "id": "Q-28",
+      "type": "",
+      "query": "어제 반나절 인터넷이 안 됐는데 요금 깎아주나요",
+      "top1": 0.6527,
+      "gold_hit": true
+    },
+    {
+      "id": "Q-29",
+      "type": "",
+      "query": "상담원 연결 몇 시까지 되나요",
+      "top1": 0.6947,
+      "gold_hit": true
+    },
+    {
+      "id": "Q-30",
+      "type": "",
+      "query": "갑자기 신호가 하나도 안 잡혀요",
+      "top1": 0.5513,
+      "gold_hit": true
+    }
+  ],
+  "oos": [
+    {
+      "id": "OOS-01",
+      "type": "무관",
+      "query": "오늘 서울 날씨 어때요?",
+      "top1": 0.436,
+      "gold_hit": false
+    },
+    {
+      "id": "OOS-02",
+      "type": "무관",
+      "query": "근처에 괜찮은 맛집 추천해줘",
+      "top1": 0.4924,
+      "gold_hit": false
+    },
+    {
+      "id": "OOS-03",
+      "type": "무관",
+      "query": "만원짜리 지폐에 누구 그려져 있어요?",
+      "top1": 0.313,
+      "gold_hit": false
+    },
+    {
+      "id": "OOS-04",
+      "type": "무관",
+      "query": "삼겹살 몇 도에서 구워야 맛있어요?",
+      "top1": 0.3764,
+      "gold_hit": false
+    },
+    {
+      "id": "OOS-05",
+      "type": "무관",
+      "query": "파이썬에서 for문 어떻게 써요?",
+      "top1": 0.3496,
+      "gold_hit": false
+    },
+    {
+      "id": "OOS-06",
+      "type": "범위밖",
+      "query": "KT 요금제가 한빛모바일보다 저렴한가요?",
+      "top1": 0.703,
+      "gold_hit": false
+    },
+    {
+      "id": "OOS-07",
+      "type": "범위밖",
+      "query": "아이폰 16 출시일이 언제예요?",
+      "top1": 0.383,
+      "gold_hit": false
+    },
+    {
+      "id": "OOS-08",
+      "type": "범위밖",
+      "query": "5G가 LTE보다 얼마나 빨라요?",
+      "top1": 0.5353,
+      "gold_hit": false
+    },
+    {
+      "id": "OOS-09",
+      "type": "범위밖",
+      "query": "통신비 세액공제는 어떻게 받나요?",
+      "top1": 0.6036,
+      "gold_hit": false
+    },
+    {
+      "id": "OOS-10",
+      "type": "범위밖",
+      "query": "알뜰폰이 정확히 뭔가요?",
+      "top1": 0.5284,
+      "gold_hit": false
+    },
+    {
+      "id": "OOS-11",
+      "type": "없는정책",
+      "query": "인터넷이랑 휴대폰 같이 쓰면 결합 할인 돼요?",
+      "top1": 0.5713,
+      "gold_hit": false
+    },
+    {
+      "id": "OOS-12",
+      "type": "없는정책",
+      "query": "제휴 신용카드로 내면 통신비 할인받나요?",
+      "top1": 0.6292,
+      "gold_hit": false
+    },
+    {
+      "id": "OOS-13",
+      "type": "없는정책",
+      "query": "쌓인 포인트로 최신 휴대폰 기기를 살 수 있어요?",
+      "top1": 0.5663,
+      "gold_hit": false
+    },
+    {
+      "id": "OOS-14",
+      "type": "없는정책",
+      "query": "스마트워치만 쓰는 전용 요금제 있어요?",
+      "top1": 0.5898,
+      "gold_hit": false
+    },
+    {
+      "id": "OOS-15",
+      "type": "없는정책",
+      "query": "해외여행 갈 때 쓸 현지 유심을 미리 구매할 수 있나요?",
+      "top1": 0.5072,
+      "gold_hit": false
+    }
+  ],
+  "sweep": [
+    {
+      "threshold": 0.3,
+      "answerable_pass_rate": 1.0,
+      "answerable_useful_rate": 0.9,
+      "oos_reject_rate": 0.0
+    },
+    {
+      "threshold": 0.32,
+      "answerable_pass_rate": 1.0,
+      "answerable_useful_rate": 0.9,
+      "oos_reject_rate": 0.06666666666666667
+    },
+    {
+      "threshold": 0.34,
+      "answerable_pass_rate": 1.0,
+      "answerable_useful_rate": 0.9,
+      "oos_reject_rate": 0.06666666666666667
+    },
+    {
+      "threshold": 0.36,
+      "answerable_pass_rate": 1.0,
+      "answerable_useful_rate": 0.9,
+      "oos_reject_rate": 0.13333333333333333
+    },
+    {
+      "threshold": 0.38,
+      "answerable_pass_rate": 1.0,
+      "answerable_useful_rate": 0.9,
+      "oos_reject_rate": 0.2
+    },
+    {
+      "threshold": 0.4,
+      "answerable_pass_rate": 1.0,
+      "answerable_useful_rate": 0.9,
+      "oos_reject_rate": 0.26666666666666666
+    },
+    {
+      "threshold": 0.42,
+      "answerable_pass_rate": 1.0,
+      "answerable_useful_rate": 0.9,
+      "oos_reject_rate": 0.26666666666666666
+    },
+    {
+      "threshold": 0.44,
+      "answerable_pass_rate": 1.0,
+      "answerable_useful_rate": 0.9,
+      "oos_reject_rate": 0.3333333333333333
+    },
+    {
+      "threshold": 0.46,
+      "answerable_pass_rate": 1.0,
+      "answerable_useful_rate": 0.9,
+      "oos_reject_rate": 0.3333333333333333
+    },
+    {
+      "threshold": 0.48,
+      "answerable_pass_rate": 1.0,
+      "answerable_useful_rate": 0.9,
+      "oos_reject_rate": 0.3333333333333333
+    },
+    {
+      "threshold": 0.5,
+      "answerable_pass_rate": 0.9666666666666667,
+      "answerable_useful_rate": 0.8666666666666667,
+      "oos_reject_rate": 0.4
+    },
+    {
+      "threshold": 0.52,
+      "answerable_pass_rate": 0.9666666666666667,
+      "answerable_useful_rate": 0.8666666666666667,
+      "oos_reject_rate": 0.4666666666666667
+    },
+    {
+      "threshold": 0.54,
+      "answerable_pass_rate": 0.9,
+      "answerable_useful_rate": 0.8,
+      "oos_reject_rate": 0.6
+    },
+    {
+      "threshold": 0.56,
+      "answerable_pass_rate": 0.8666666666666667,
+      "answerable_useful_rate": 0.7666666666666667,
+      "oos_reject_rate": 0.6
+    },
+    {
+      "threshold": 0.58,
+      "answerable_pass_rate": 0.7666666666666667,
+      "answerable_useful_rate": 0.7,
+      "oos_reject_rate": 0.7333333333333333
+    },
+    {
+      "threshold": 0.6,
+      "answerable_pass_rate": 0.7666666666666667,
+      "answerable_useful_rate": 0.7,
+      "oos_reject_rate": 0.8
+    }
+  ],
+  "recommended": {
+    "threshold": 0.52,
+    "answerable_pass_rate": 0.9666666666666667,
+    "answerable_useful_rate": 0.8666666666666667,
+    "oos_reject_rate": 0.4666666666666667
+  }
+}
